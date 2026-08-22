@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>วันนี้วันครบรอบ</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #fce4ec;
+            font-family: 'Tahoma', 'Arial', sans-serif;
+        }
+
+        h1 {
+            color: #2e7d32;
+            font-size: 32px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .cat-container {
+            width: 250px;
+            height: 250px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cat-container img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .btn-container {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            min-height: 80px;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 22px;
+            font-weight: bold;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.2s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-anniversary {
+            background-color: #4caf50;
+            color: white;
+        }
+
+        .btn-anniversary:hover {
+            background-color: #388e3c;
+        }
+
+        .btn-dont-know {
+            background-color: #ef5350;
+            color: white;
+        }
+
+        .btn-dont-know:hover {
+            background-color: #d32f2f;
+        }
+    </style>
+</head>
+<body>
+
+    <h1 id="titleText">วันนี้วันครบรอบ</h1>
+
+    <div class="cat-container">
+        <img id="catImg" src="cat1.gif" alt="Cat Image">
+    </div>
+
+    <div class="btn-container">
+        <button class="btn-anniversary" onclick="showAlert()">วันครบรอบ</button>
+        <button id="noBtn" class="btn-dont-know" onclick="handleDontKnow()">ม่ายรู้วว</button>
+    </div>
+
+    <script>
+        let clickCount = 0;
+        const images = ["cat1.gif", "cat2.gif", "cat3.gif", "cat4.gif", "cat5.gif", "cat6.gif"];
+
+        function handleDontKnow() {
+            clickCount++;
+            const noBtn = document.getElementById("noBtn");
+            const catImg = document.getElementById("catImg");
+
+            // เปลี่ยนรูปแมววนไปเรื่อยๆ ตามลำดับ
+            const imgIndex = clickCount % images.length;
+            catImg.src = images[imgIndex];
+
+            if (clickCount >= 5) {
+                noBtn.style.display = "none";
+            } else {
+                // ย่อขนาดปุ่มและย้ายตำแหน่งสุ่มเล็กน้อย
+                const scale = 1 - (clickCount * 0.15);
+                const randomX = (Math.random() - 0.5) * 40;
+                const randomY = (Math.random() - 0.5) * 40;
+                noBtn.style.transform = `translate(${randomX}px, ${randomY}px) scale(${scale})`;
+            }
+        }
+
+        function showAlert() {
+            alert("ร๊ากกที่สู้ดดอยู่กะเค้าปายนานๆเยยย~น้า ❤️");
+        }
+    </script>
+</body>
+</html>
